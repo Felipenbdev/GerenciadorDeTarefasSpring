@@ -23,7 +23,7 @@ Teste as APIs
 
     Body (JSON):
 
-json
+    json
 
     {
         "title": "Nova Tarefa",
@@ -35,9 +35,9 @@ json
 
     Atualizar Tarefa (PUT): http://localhost:8080/tasks/1
 
-Body (JSON):
+    Body (JSON):
 
-json
+    json
 
     {    
         "title": "Atualizada",
@@ -45,4 +45,4 @@ json
         "completed": true
     }
 
-Deletar Tarefa (DELETE): http://localhost:8080/tasks/1
+    Deletar Tarefa (DELETE): http://localhost:8080/tasks/1
