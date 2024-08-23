@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/tasks")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class TaskResources {
     @Autowired
     private TaskService service;
@@ -40,9 +41,14 @@ public class TaskResources {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task task){
-        Task obj = service.update(id, task);
+    @PutMapping("/updateAll/{id}")
+    public ResponseEntity<Task> updateAll(@PathVariable Long id, @RequestBody Task task){
+        Task obj = service.updateAll(id, task);
+        return ResponseEntity.ok().body(obj);
+    }
+    @PutMapping(value = "/status/{id}")
+    public ResponseEntity<Task> updateStatus(@PathVariable Long id, @RequestBody Task task){
+        Task obj = service.updateStatus(id, task);
         return ResponseEntity.ok().body(obj);
     }
 }

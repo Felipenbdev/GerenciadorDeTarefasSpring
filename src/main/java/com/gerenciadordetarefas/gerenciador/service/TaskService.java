@@ -2,7 +2,6 @@ package com.gerenciadordetarefas.gerenciador.service;
 
 import com.gerenciadordetarefas.gerenciador.entities.Task;
 import com.gerenciadordetarefas.gerenciador.repositories.TaskRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +26,16 @@ public class TaskService {
     public void deleteById(Long id){
         repository.deleteById(id);
     }
-    public Task update(Long id, Task obj) {
+    public Task updateAll(Long id, Task obj) {
         Task entity = repository.getReferenceById(id);
         updateData(entity,obj);
         return repository.save(entity);
     }
-
+    public Task updateStatus(Long id, Task obj) {
+        Task entity = repository.getReferenceById(id);
+        entity.setCompleted(obj.isCompleted());
+        return repository.save(entity);
+    }
     private void updateData(Task entity, Task obj) {
         entity.setTitle(obj.getTitle());
         entity.setDescription(obj.getDescription());
