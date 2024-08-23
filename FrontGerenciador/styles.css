@@ -50,8 +50,46 @@ li {
     margin-bottom: 10px;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-li.completed {
+li .actions {
+    display: flex;
+    gap: 10px;
+}
+
+.completed-button {
+    padding: 5px 10px;
+    background-color: #28a745; /* Verde para "Tarefa Concluída" */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.completed-button:hover {
+    background-color: #218838;
+}
+
+.delete-button {
+    padding: 5px 10px;
+    background-color: #dc3545; /* Vermelho para "Deletar" */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+li.completed span {
+    text-decoration: line-through;
+}
+
+.completed {
     text-decoration: line-through;
 }
