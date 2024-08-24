@@ -22,7 +22,7 @@ async function fetchTasks() {
             actionsDiv.classList.add('actions');
 
             const completeButton = document.createElement('button');
-            completeButton.textContent = task.completed ? 'Concluída' : 'Tarefa Concluída';
+            completeButton.textContent = task.completed ? 'Concluída' : 'Click para concluir';
             completeButton.classList.add('completed-button');
             completeButton.disabled = task.completed;
             completeButton.addEventListener('click', () => completeTask(task.id, taskDetails, completeButton));
