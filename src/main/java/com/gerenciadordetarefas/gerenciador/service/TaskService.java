@@ -36,6 +36,12 @@ public class TaskService {
         entity.setCompleted(obj.isCompleted());
         return repository.save(entity);
     }
+    public Task uptadeTitleAndDesc(Long id, Task obj) {
+        Task entity = repository.getReferenceById(id);
+        entity.setTitle(obj.getTitle());
+        entity.setDescription(obj.getDescription());
+        return repository.save(entity);
+    }
     private void updateData(Task entity, Task obj) {
         entity.setTitle(obj.getTitle());
         entity.setDescription(obj.getDescription());

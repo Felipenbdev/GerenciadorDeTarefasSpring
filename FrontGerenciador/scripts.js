@@ -32,8 +32,14 @@ async function fetchTasks() {
             deleteButton.classList.add('delete-button');
             deleteButton.addEventListener('click', () => deleteTask(task.id));
 
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Editar';
+            editButton.classList.add('edit-button');
+            editButton.addEventListener('click', () => editTask(task.id, task.title, task.description));
+
             actionsDiv.appendChild(completeButton);
             actionsDiv.appendChild(deleteButton);
+            actionsDiv.appendChild(editButton);
 
             li.appendChild(taskDetails);
             li.appendChild(actionsDiv);
@@ -47,7 +53,7 @@ async function fetchTasks() {
 
 async function completeTask(taskId, taskDetailsElement, completeButton) {
     try {
-        const response = await fetch(`${apiUrl}/status/${taskId}`, {
+        const response = await fetch(`${apiUrl}/updateStatus/${taskId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -106,6 +112,32 @@ async function addTask() {
         fetchTasks();
     } catch (error) {
         console.error('Add task failed:', error);
+    }
+}
+
+async function editTask(taskId, currentTitle, currentDescription) {
+    const newTitle = prompt("Edite o título:", currentTitle);
+    const newDescription = prompt("Edite a descrição:", currentDescription);
+
+    if (newTitle && newDescription) {
+        try {
+            const response = await fetch(`${apiUrl}/updateTitleAndDes/${taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title: newTitle, description: newDescription })
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            console.log('Task updated successfully');
+            fetchTasks();
+        } catch (error) {
+            console.error('Edit task failed:', error);
+        }
+    } else {
+        alert('Título e descrição não podem ser vazios.');
     }
 }
 

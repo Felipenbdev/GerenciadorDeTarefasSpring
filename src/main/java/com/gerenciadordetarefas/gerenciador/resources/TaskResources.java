@@ -46,9 +46,14 @@ public class TaskResources {
         Task obj = service.updateAll(id, task);
         return ResponseEntity.ok().body(obj);
     }
-    @PutMapping(value = "/status/{id}")
+    @PutMapping(value = "/updateStatus/{id}")
     public ResponseEntity<Task> updateStatus(@PathVariable Long id, @RequestBody Task task){
         Task obj = service.updateStatus(id, task);
+        return ResponseEntity.ok().body(obj);
+    }
+    @PutMapping(value = "/updateTitleAndDes/{id}")
+    public ResponseEntity<Task> updateTitleAndDes(@PathVariable Long id, @RequestBody Task task){
+        Task obj = service.uptadeTitleAndDesc(id,task);
         return ResponseEntity.ok().body(obj);
     }
 }
